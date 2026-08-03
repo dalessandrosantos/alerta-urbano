@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'ocorrencias',
+
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +127,9 @@ MEDIA_URL = "media/"
 
 # Pasta onde os arquivos de mídia são salvos
 MEDIA_ROOT = BASE_DIR / "media"
+
+# Permite o uso do Bootstrap 5 pelo Crispy Forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+# Define o Bootstrap 5 como padrão na renderização dos formulários
+CRISPY_TEMPLATE_PACK = "bootstrap5"

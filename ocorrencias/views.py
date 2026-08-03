@@ -7,7 +7,7 @@ def reportar(request):
         form = OcorrenciaForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('reportar') 
+            return redirect('sucesso') 
         
     else: # se for GET
         form = OcorrenciaForm()
@@ -16,3 +16,14 @@ def reportar(request):
         'form': form
     }
     return render(request, 'ocorrencias/reportar.html', context)
+
+
+def sucesso(request):
+    return render(request, 'ocorrencias/sucesso.html')
+
+def painel(request):
+    ocorrencias = Ocorrencia.objects.all()
+    context = {
+        'ocorrencias': ocorrencias
+    }
+    return render(request, 'ocorrencias/painel.html', context)

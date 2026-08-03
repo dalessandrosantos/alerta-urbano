@@ -1,9 +1,18 @@
 {% extends "ocorrencias/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block title %}Reportar{% endblock title %}
 
 {% block content %}
-<h1>Faça seu Reporte</h1>
 
+
+<div class="container">
+    <h1>Faça seu Reporte</h1>
+    <form action="" method="POST" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
 
 {% endblock content %}
