@@ -17,14 +17,17 @@ class Ocorrencia(models.Model):
         RESOLVIDO = 'resolvido', 'Resolvido'
 
     categoria = models.CharField(max_length=50, choices=CategoriaOcorrencias.choices)
-    descricao = models.TextField()
-    localizacao = models.CharField(max_length=155, help_text='Ex: Rua, Número, Bairro')
+    descricao = models.TextField(verbose_name='Descrição')
+    localizacao = models.CharField(max_length=155, help_text='Ex: Rua, Número, Bairro', verbose_name='Localização')
     # imagens serão salvas em media/ocorrencias/
     imagem = models.ImageField(upload_to='ocorrencias/%Y/%m/', blank=True)
-    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_criacao = models.DateTimeField(auto_now_add=True, verbose_name='Data de Criação')
     status = models.CharField(max_length=20, choices=StatusOcorrencias.choices ,default=StatusOcorrencias.REPORTADO)
 
 
     def __str__(self):
         """Retorna o texto legível"""
         return f'{self.get_categoria_display()} - {self.localizacao}'
+
+    class Meta:
+        ordering = ['-data_criacao']

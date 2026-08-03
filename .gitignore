@@ -203,4 +203,8 @@ O modelo específico da JetBrains é mantido em um arquivo JetBrains.gitignore s
 # Opção (não recomendada): você pode descomentar a seguinte linha para ignorar toda a pasta de ideias.
 #.ideia/
 
+
+# Arquivos de mídia
+media/
+
 # Fim de https://www.toptal.com/developers/gitignore/api/d,django
