@@ -1,0 +1,18 @@
+{% extends "ocorrencias/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <h1>Faça seu Login</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+
+    <a href="{% url 'reportar' %}" >Voltar</a>
+</div>
+{% endblock content %}

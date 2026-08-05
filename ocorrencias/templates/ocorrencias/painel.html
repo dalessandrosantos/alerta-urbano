@@ -10,17 +10,23 @@
             <li>{{ ocorrencia.get_categoria_display }}</li>
             <li>{{ ocorrencia.descricao }}</li>
             <li>{{ ocorrencia.localizacao }}</li>
-            
+
             {% if ocorrencia.imagem %}
-                <img src={{ ocorrencia.imagem.url }} alt={{ "Imagem da ocorrência" }} class="img-fluid">
+                <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" class="img-fluid">
             {% else %}
                 <p>Nenhuma imagem enviada</p>
             {% endif %}
 
             <li>{{ ocorrencia.data_criacao }}</li>
             <li>{{ ocorrencia.get_status_display }}</li>
+
+            <a href="{% url "editar" ocorrencia.pk %}" class="btn btn-primary">Editar</a> 
+            
+            <a href="{% url 'deletar' ocorrencia.pk %}" class="btn btn-danger">Deletar</a>
+            
+            
         {% endfor %}
     </ul>
-
+    <a href="{% url 'reportar' %}">Ir para página inicial de reporte</a>
 </div>
 {% endblock content %}

@@ -16,12 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-# Acessa configurações do projeto (settings.py)
-from django.conf import settings
-
-# Suporte a arquivos de mídia
-from django.conf.urls.static import static
+from django.conf import settings # Acessa configurações do projeto (settings.py)
+from django.conf.urls.static import static # Suporte a arquivos de mídia
 
 urlpatterns = [
     path('admin/', admin.site.urls),

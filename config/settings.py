@@ -122,6 +122,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # URL dos arquivos de mídia
 MEDIA_URL = "media/"
 
@@ -131,5 +132,11 @@ MEDIA_ROOT = BASE_DIR / "media"
 # Permite o uso do Bootstrap 5 pelo Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-# Define o Bootstrap 5 como padrão na renderização dos formulários
+# Define o Bootstrap 5 para os formulários
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Redireciona após login
+LOGIN_REDIRECT_URL = 'painel' 
+
+# URL usada quando o login é exigido
+LOGIN_URL = 'login' 

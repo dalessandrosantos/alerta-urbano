@@ -1,0 +1,21 @@
+{% extends "ocorrencias/base.html" %}
+
+{% block title %}Deletar ocorrência{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Deletar ocorrência</h1>
+
+    <p>Deseja mesmo deletar o reporte de <strong>{{ ocorrencia.get_categoria_display }}</strong> em <strong>{{ ocorrencia.localizacao }}</strong>?</p>
+
+    <form action="{% url 'deletar' ocorrencia.pk %}" method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Confirmar exclusão</button>
+    
+    </form>
+    
+    <a href="{% url 'painel' %}" class="btn btn-primary">Cancelar</a>
+</div>
+{% endblock content %}

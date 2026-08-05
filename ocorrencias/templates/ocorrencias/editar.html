@@ -1,0 +1,27 @@
+{% extends "ocorrencias/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Editar Ocorrência{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Editar ocorrência</h1>
+
+    <form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+
+        {% if ocorrencia.imagem %}
+            <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" class="img-fluid">
+        {% else %}
+            <p>Nenhuma imagem enviada</p>
+        {% endif %}
+        
+        {{ form|crispy}}
+        
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+    <a href="{% url 'painel' %}" class="btn btn-danger">Voltar</a>
+</div>
+
+{% endblock content %}
