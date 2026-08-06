@@ -1,20 +1,22 @@
 {% extends "ocorrencias/base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Reporte{% endblock title %}
+{% block title %}Página de reporte{% endblock title %}
 
 {% block content %}
 
-<div class="container">
-    <a href="{% url 'login' %}">Login para Administradores</a>
-    
-    <h1>Faça seu Reporte</h1>
+<h1>Faça seu Reporte</h1>
 
-    <form action="" method="POST" enctype="multipart/form-data" class="form-container">
-        {% csrf_token %}
-        {{ form|crispy}}
-        <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
-</div>
+<form action="" method="POST" enctype="multipart/form-data" class="form-container">
+    {% csrf_token %}
+    {{ form|crispy}}
+    <button type="submit" class="">Enviar</button>
+</form>
+
+{% for message in messages %}
+    {{ message.message }}
+{% endfor %}
+
+
 
 {% endblock content %}

@@ -4,24 +4,24 @@
 {% block title %}Editar Ocorrência{% endblock title %}
 
 {% block content %}
+<h1>Editar ocorrência</h1>
 
-<div class="container">
-    <h1>Editar ocorrência</h1>
 
-    <form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
-        {% csrf_token %}
 
-        {% if ocorrencia.imagem %}
-            <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" class="img-fluid">
-        {% else %}
-            <p>Nenhuma imagem enviada</p>
-        {% endif %}
-        
-        {{ form|crispy}}
-        
-        <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
-    <a href="{% url 'painel' %}" class="btn btn-danger">Voltar</a>
-</div>
+<form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
+    {% csrf_token %}
+
+    {% if ocorrencia.imagem %}
+        <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" width="500">
+    {% else %}
+        <p>Nenhuma imagem enviada</p>
+    {% endif %}
+    
+    {{ form|crispy}}
+    
+    <button type="submit" class="">Salvar</button>
+    <a href="{% url 'painel' %}" class="">Voltar</a>
+</form>
+
 
 {% endblock content %}

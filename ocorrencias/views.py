@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required # Limita acesso a usuários logados
 from django.contrib.auth.views import LoginView  # View pronta para login
+from django.contrib import messages # Permite enviar avisos temporários para o usuário na tela
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Ocorrencia
@@ -11,19 +12,17 @@ def reportar(request):
 
         if form.is_valid():
             form.save()
-            return redirect('sucesso') 
+            messages.success(request, "Reporte enviado com sucesso!" ) 
+            return redirect('reportar') 
         
     else: # se for GET
         form = OcorrenciaForm()
 
     context = {
-        'form': form
+        'form': form,
     }
     return render(request, 'ocorrencias/reportar.html', context)
 
-
-def sucesso(request):
-    return render(request, 'ocorrencias/sucesso.html')
 
 @login_required
 def painel(request):
@@ -32,6 +31,7 @@ def painel(request):
         'ocorrencias': ocorrencias
     }
     return render(request, 'ocorrencias/painel.html', context)
+
 
 @login_required
 def editar(request, pk):
@@ -52,6 +52,7 @@ def editar(request, pk):
         'form': form,
     }
     return render(request, 'ocorrencias/editar.html', context)
+
 
 @login_required
 def deletar(request, pk):

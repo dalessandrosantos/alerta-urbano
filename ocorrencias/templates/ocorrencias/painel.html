@@ -3,30 +3,40 @@
 {% block title %}Painel Administrador{% endblock title %}
 
 {% block content %}
-<div class="container">
-    <h1>Painel de Administrador</h1>
-    <ul>
-        {% for ocorrencia in ocorrencias %}
-            <li>{{ ocorrencia.get_categoria_display }}</li>
-            <li>{{ ocorrencia.descricao }}</li>
-            <li>{{ ocorrencia.localizacao }}</li>
 
-            {% if ocorrencia.imagem %}
-                <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" class="img-fluid">
-            {% else %}
-                <p>Nenhuma imagem enviada</p>
-            {% endif %}
+<div class="table-responsive">
+    <table class="table  text-center">
+        <thead class="">
+        <tr>
+            <th>Imagem</th>
+            <th>Categoria</th>
+            <th>Localização </th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
 
-            <li>{{ ocorrencia.data_criacao }}</li>
-            <li>{{ ocorrencia.get_status_display }}</li>
-
-            <a href="{% url "editar" ocorrencia.pk %}" class="btn btn-primary">Editar</a> 
-            
-            <a href="{% url 'deletar' ocorrencia.pk %}" class="btn btn-danger">Deletar</a>
-            
-            
-        {% endfor %}
-    </ul>
-    <a href="{% url 'reportar' %}">Ir para página inicial de reporte</a>
+        <tbody>
+            {% for ocorrencia in ocorrencias %}
+                <tr>
+                    <td>
+                        {% if ocorrencia.imagem %}
+                            <a href="{{ ocorrencia.imagem.url }}" target="_blank">Ver imagem</a>
+                        {% else %}
+                            <span class="text-muted">Sem imagem</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ ocorrencia.get_categoria_display }}</td>
+                    <td>{{ ocorrencia.localizacao }}</td>
+                    <td>{{ ocorrencia.data_criacao }}</td>
+                    <td>{{ ocorrencia.get_status_display }}</td>
+                    <td>
+                        <a href="{% url 'editar' ocorrencia.pk %}" class="">Editar</a>
+                        <a href="{% url 'deletar' ocorrencia.pk %}" class="">Deletar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </thead>
+    </table>
 </div>
 {% endblock content %}
