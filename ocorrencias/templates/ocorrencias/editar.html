@@ -1,21 +1,22 @@
 {% extends "ocorrencias/base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Editar Ocorrência{% endblock title %}
+{% block title %}Alerta Urbano - Editar Ocorrência{% endblock title %}
 
 {% block content %}
 <h1>Editar ocorrência</h1>
 
+<div class="mb-3">
 
+    <form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+            {% if ocorrencia.imagem %}
+            <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência"  style="height: 290px; width: 450px;">
+        {% else %}
+            <p>Nenhuma imagem enviada</p>
+        {% endif %}
 
-<form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
-    {% csrf_token %}
-
-    {% if ocorrencia.imagem %}
-        <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência" width="500">
-    {% else %}
-        <p>Nenhuma imagem enviada</p>
-    {% endif %}
+</div>
     
     {{ form|crispy}}
     

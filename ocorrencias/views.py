@@ -13,8 +13,7 @@ def reportar(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Reporte enviado com sucesso!" ) 
-            return redirect('reportar') 
-        
+            return redirect('reportar')   
     else: # se for GET
         form = OcorrenciaForm()
 

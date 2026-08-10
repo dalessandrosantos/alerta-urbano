@@ -140,3 +140,5 @@ LOGIN_REDIRECT_URL = 'painel'
 
 # URL usada quando o login é exigido
 LOGIN_URL = 'login' 
+
+
