@@ -24,9 +24,5 @@ urlpatterns = [
     path('', include('ocorrencias.urls'))
 ]
 
-# Libera o acesso aos arquivos de mídia durante o desenvolvimento
-if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL, 
-        document_root=settings.MEDIA_ROOT,
-    )
+# Libera o acesso aos arquivos de mídia durante o desenvolvimento e produção
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
