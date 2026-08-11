@@ -118,8 +118,6 @@ rpm==6.0.2
 rsa==4.9
 s3transfer==0.19.1
 SecretStorage==3.5.0
-selinux @ file:///builddir/build/BUILD/libselinux-3.11-build/libselinux-3.11/src/dist/selinux-3.11-cp314-cp314-linux_x86_64.whl#sha256=e028f96b8a57c596eb2e91c08d937d711954cb0882a6552bf28ddeab938028e3
-sepolicy @ file:///builddir/build/BUILD/policycoreutils-3.11-build/selinux-3.11/python/sepolicy/dist/sepolicy-3.11-py3-none-any.whl#sha256=4215ac0439a505cdb35970cf16a590b4592d8a21f2bc6612e7a216c4490da2a3
 setools==4.6.0
 setuptools==80.10.2
 shtab==1.7.2
