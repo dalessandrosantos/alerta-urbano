@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import cloudinary # Importa Cloudinary para gerenciamento e upload de mídias
 from pathlib import Path
 from decouple import config
 
@@ -37,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
 
     'ocorrencias',
 
@@ -126,9 +130,6 @@ STATIC_URL = 'static/'
 # Define onde os arquivos estáticos serão armazenados para produção
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Configura o WhiteNoise para comprimir e gerenciar os arquivos estáticos
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # URL dos arquivos de mídia
 MEDIA_URL = "media/"
 
@@ -147,4 +148,26 @@ LOGIN_REDIRECT_URL = 'painel'
 # URL usada quando o login é exigido
 LOGIN_URL = 'login' 
 
+# Credenciais do Cloudinary lidas com segurança do arquivo .env
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET'),
+}
 
+# Define o Cloudinary como o armazenamento padrão de mídias (uploads) do Django
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# Inicializa o SDK oficial do Cloudinary com as credenciais de acesso
+cloudinary.config(
+    cloud_name=config('CLOUDINARY_CLOUD_NAME'),
+    api_key=config('CLOUDINARY_API_KEY'),
+    api_secret=config('CLOUDINARY_API_SECRET'),
+)
