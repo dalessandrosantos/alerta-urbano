@@ -6,3 +6,4 @@ crispy-bootstrap5
 Pillow
 python-decouple
 whitenoise
+gunicorn==23.0.0
