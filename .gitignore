@@ -206,5 +206,6 @@ O modelo específico da JetBrains é mantido em um arquivo JetBrains.gitignore s
 
 # Arquivos de mídia
 media/
+staticfiles/
 
 # Fim de https://www.toptal.com/developers/gitignore/api/d,django

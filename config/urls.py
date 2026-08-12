@@ -14,6 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+# Importa as configurações do projeto (settings.py)
+from django.conf import settings
+
+# Importa a função para servir arquivos estáticos e de mídia no ambiente de desenvolvimento
+from django.conf.urls.static import static
+
 from django.contrib import admin
 from django.urls import path, include
 
@@ -21,3 +28,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ocorrencias.urls'))
 ]
+
+# Se o projeto estiver em modo de desenvolvimento (DEBUG = True)
+if settings.DEBUG:
+    # Adiciona a rota para carregar as imagens/arquivos de mídia no navegador durante os testes
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
