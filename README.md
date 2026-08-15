@@ -2,7 +2,7 @@
 
 Sistema web desenvolvido em Django para reporte e gerenciamento de problemas urbanos.
 
-Projeto desenvolvido como parte dos meus estudos de Análise e Desenvolvimento de Sistemas, com foco em back-end Django.
+Projeto desenvolvido como parte dos meus estudos de Análise e Desenvolvimento de Sistemas, com foco em back-end.
 
 ---
 
