@@ -11,4 +11,3 @@ class OcorrenciaEditForm(forms.ModelForm):
     class Meta:
         model = Ocorrencia
         fields = ['categoria', 'descricao', 'localizacao', 'imagem', 'status']
-        
