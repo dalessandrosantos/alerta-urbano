@@ -3,52 +3,84 @@
 {% block title %}Alerta Urbano - Painel Administrador{% endblock title %}
 
 {% block content %}
+<div class="container">
 
-<h2 class="text-center mb-4">Painel Administrador</h2>
+    <h1 class="text-center mb-4">Painel Administrador</h1>
 
-<div class="table-responsive">
-    <table class="table table-hover align-middle text-center">
-        <thead class="table-dark">
-            <tr>
-                <th>Imagem</th>
-                <th>Categoria</th>
-                <th>Localização </th>
-                <th>Data</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for ocorrencia in ocorrencias %}
+    <div class="table-responsive">
+        
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+                
                 <tr>
-                    <td>
-                        {% if ocorrencia.imagem %}
-                            <a href="{{ ocorrencia.imagem.url }}" class="link-opacity-50 text-decoration-none" target="_blank">Ver imagem</a>
-                        {% else %}
-                            <span class="text-muted">Sem imagem</span>
-                        {% endif %}
-                    </td>
-                    <td>{{ ocorrencia.get_categoria_display }}</td>
-                    <td>{{ ocorrencia.localizacao }}</td>
-                    <td>{{ ocorrencia.data_criacao }}</td>
-                    <td>
-                        {% if ocorrencia.status == "reportado" %}
-                        <span class="badge text-bg-warning">Reportado</span>
-
-                    {% elif ocorrencia.status == "em_analise" %}
-                        <span class="badge text-bg-primary">Em análise</span>
-
-                    {% elif ocorrencia.status == "resolvido" %}
-                        <span class="badge text-bg-success">Resolvido</span>
-                    {% endif %}
-                    </td>
-                    <td>
-                        <a href="{% url 'editar' ocorrencia.pk %}" class="link-primary text-decoration-none me-2">Editar</a>
-                        <a href="{% url 'deletar' ocorrencia.pk %}" class="link-danger text-decoration-none">Deletar</a>
-                    </td>
+                    <th>Imagem</th>
+                    <th>Categoria</th>
+                    <th>Localização </th>
+                    <th>Data</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Ações</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            
+            </thead>
+
+            <tbody>
+                {% for ocorrencia in ocorrencias %}
+                    <tr>
+
+                        <td>
+                            {% if ocorrencia.imagem %}
+                                <a href="{{ ocorrencia.imagem.url }}" class="link-opacity-75 text-decoration-none" target="_blank">
+                                    Ver imagem
+                                </a>
+                            {% else %}
+                                <span class="text-muted">
+                                    Sem imagem
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ ocorrencia.get_categoria_display }}</td>
+                        
+                        <td>{{ ocorrencia.localizacao }}</td>
+                        
+                        <td>{{ ocorrencia.data_criacao }}</td>
+                        
+                        <td class="text-center">
+                            {% if ocorrencia.status == "reportado" %}
+                            <span class="badge text-bg-warning">
+                                Reportado
+                            </span>
+
+                        {% elif ocorrencia.status == "em_analise" %}
+                            <span class="badge text-bg-primary">
+                                Em análise
+                            </span>
+
+                        {% elif ocorrencia.status == "resolvido" %}
+                            <span class="badge text-bg-success">
+                                Resolvido
+                            </span>
+                        {% endif %}
+                        </td>
+                        
+                        <td class="text-center">
+                            <a href="{% url 'editar' ocorrencia.pk %}" class="link-primary text-decoration-none me-2">
+                                Editar
+                            </a>
+                            
+                            <a href="{% url 'deletar' ocorrencia.pk %}" class="link-danger text-decoration-none">
+                                Deletar
+                            </a>
+                        </td>
+                    
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    
+    </div>
+
 </div>
 {% endblock content %}

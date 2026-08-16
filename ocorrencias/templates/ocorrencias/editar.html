@@ -4,25 +4,37 @@
 {% block title %}Alerta Urbano - Editar Ocorrência{% endblock title %}
 
 {% block content %}
-<h1>Editar ocorrência</h1>
+<div class="container">
 
-<div class="mb-3">
+    <div class="col-lg-8 mx-auto">
 
-    <form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
-        {% csrf_token %}
-            {% if ocorrencia.imagem %}
-            <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência"  style="height: 290px; width: 450px;">
-        {% else %}
-            <p>Nenhuma imagem enviada</p>
-        {% endif %}
+        <h2 class="text-center mb-4">Editar ocorrência</h2>
+
+        <form action="{% url "editar" ocorrencia.pk %}" method="POST" enctype="multipart/form-data" class="form-container">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                {% if ocorrencia.imagem %}
+                    <img src="{{ ocorrencia.imagem.url }}" alt="Imagem da ocorrência"  class="img-fluid img-thumbnail">
+                {% else %}
+                    <div class="text-center text-secundary py-4 border rounded">
+                        Nenhuma imagem enviada
+                    </div>
+                    
+                {% endif %}
+            </div>
+                
+            {{ form|crispy}}
+            
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                <a href="{% url 'painel' %}" class="btn btn-secondary">Voltar</a>
+            </div>
+            
+        </form>
+    
+    </div>
 
 </div>
-    
-    {{ form|crispy}}
-    
-    <button type="submit" class="">Salvar</button>
-    <a href="{% url 'painel' %}" class="">Voltar</a>
-</form>
-
-
 {% endblock content %}

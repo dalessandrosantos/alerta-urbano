@@ -5,21 +5,32 @@
 
 {% block content %}
 
-<div class="container" style="max-width: 600px">
+<div class="container">
 
-    <h1 class="text-center mb-4">Faça seu Reporte</h1>
+    <div class="col-lg-8 mx-auto">
 
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}" role="alert">
-            {{ message.message }}
-        </div>
-    {% endfor %}
+        <h1 class="text-center mb-4">Faça seu Reporte</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="form-container">
-        {% csrf_token %}
-        {{ form|crispy}}
-        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
-    </form>
+        <p class="text-center text-muted">Informe o problema encontrado e, se possível, envie uma imagem.</p>
+
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-4" role="alert">
+                {{ message.message }}
+            </div>
+        {% endfor %}
+
+        <form method="POST" enctype="multipart/form-data" class="form-container">
+            {% csrf_token %}
+            
+            {{ form|crispy}}
+            
+            <button type="submit" class="btn btn-primary mt-3 px-4">
+                Enviar reporte
+            </button>
+        
+        </form>
+        
+    </div>
 
 </div>
 
