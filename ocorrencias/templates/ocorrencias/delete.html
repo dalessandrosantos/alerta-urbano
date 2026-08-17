@@ -3,13 +3,33 @@
 {% block title %}Alerta Urbano - Deletar ocorrência{% endblock title %}
 
 {% block content %}
-<h2>Confirmar Exclusão</h2>
-    <p>Deseja mesmo deletar o reporte de <strong>{{ ocorrencia.get_categoria_display }}</strong> em <strong>{{ ocorrencia.localizacao }}</strong>?</p>
+<div class="container">
 
-<form method="POST">
-    {% csrf_token %}
-    <button type="submit">Sim, deletar</button>
-    <a href="{% url 'painel' %}">Cancelar</a>
-</form>
+    <div class="col-lg-6 mx-auto">
+
+        <h1 class="text-center mb-5">Confirmar Exclusão</h1>
+
+        <div class="alert alert-warning" role="alert">
+            <strong>Atenção!</strong> Essa ação não poderá ser desfeita.
+        </div>
+
+        <p class="mb-4">
+            Deseja mesmo deletar o reporte de <strong>{{ ocorrencia.get_categoria_display }}
+            </strong> em <strong>{{ ocorrencia.localizacao }}</strong>?
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <button type="submit" class="btn btn-danger">
+                Sim, deletar
+            </button>
+
+            <a href="{% url 'painel' %}"  class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+    </div>
+</div>
 
 {% endblock content %}
